@@ -29,10 +29,7 @@ jobs:
       - name: Clean up
         run: |
           pwd
-          rm -rf node_modules
-          rm -rf dist
-          rm -rf .gitignore
-          rm -rf .gitignore
+          ls -al
         working-directory: ./src # 指定工作目录
       # 构建产物
 
