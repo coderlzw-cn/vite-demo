@@ -30,7 +30,7 @@ jobs:
         run: |
           pwd
           ls -al
-        working-directory: ./src # 指定工作目录
+        working-directory: ./ # 指定工作目录
       # 构建产物
       # - name: Deploy to Staging server
       #   uses: easingthemes/ssh-deploy@main
@@ -53,8 +53,16 @@ jobs:
           name: my-artifact
           path: path/to/file/a.txt
       - uses: actions/download-artifact@v4
+      - run: ls -al
         with:
           name: my-artifact
+          # - name: Push to Docker Hub
+          # uses: docker/build-push-action@v1
+          # with:
+          #   username: ${{ secrets.DOCKER_HUB_NAME }}
+          #   password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+          #   repository: kklldog/agile_config
+          #   tags: test
   # publish-gpr:
   #   needs: build
   #   runs-on: ubuntu-latest
