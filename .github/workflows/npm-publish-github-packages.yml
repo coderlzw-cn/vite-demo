@@ -53,9 +53,10 @@ jobs:
           name: my-artifact
           path: path/to/file/a.txt
       - uses: actions/download-artifact@v4
-      - run: ls -al
         with:
           name: my-artifact
+          path: path/to/file/a.txt
+      - run: ls -al
           # - name: Push to Docker Hub
           # uses: docker/build-push-action@v1
           # with:
