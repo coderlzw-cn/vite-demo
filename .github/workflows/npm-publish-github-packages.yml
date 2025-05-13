@@ -24,8 +24,8 @@ jobs:
           pnpm install
       - run: |
           pnpm run build
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        # env:
+        #   NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: Clean up
         run: |
           pwd
