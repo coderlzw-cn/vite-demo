@@ -12,10 +12,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository  # 检出仓库
+      - name: Checkout repository # 检出仓库
         uses: actions/checkout@v4
       - run: ls -al
-      - uses: actions/setup-node@v4  # 设置node环境
+      - uses: actions/setup-node@v4 # 设置node环境
         with:
           node-version: 20 # 指定node版本
           registry-url: https://npm.pkg.github.com/
@@ -32,7 +32,27 @@ jobs:
           ls -al
         working-directory: ./src # 指定工作目录
       # 构建产物
-
+      - name: Deploy to Staging server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }}
+          ARGS: "-rlgoDzvc -i"
+          SOURCE: "dist/"
+          REMOTE_HOST: 127.0.0.1
+          REMOTE_USER: root
+          TARGET: /root/www/r-hooks
+          EXCLUDE: "/dist/, /node_modules/"
+      #
+      - uses: actions/checkout@v2
+      - run: mkdir -p path/to/artifact
+      - run: echo hello > path/to/file/a.txt
+      - uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: path/to/artifact/a.txt
+      - uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
   # publish-gpr:
   #   needs: build
   #   runs-on: ubuntu-latest
