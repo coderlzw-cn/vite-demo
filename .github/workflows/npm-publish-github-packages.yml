@@ -44,7 +44,9 @@ jobs:
       #     EXCLUDE: "/dist/, /node_modules/"
       #
       - uses: actions/checkout@v4
-      - run: mkdir -p path/to/artifact
+      - run: |
+          mkdir -p path/to/artifact
+          ls -al
       - run: echo hello > path/to/file/a.txt
       - uses: actions/upload-artifact@v4
         with:
