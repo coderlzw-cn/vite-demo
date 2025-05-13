@@ -12,10 +12,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout repository  # 检出仓库
         uses: actions/checkout@v4
       - run: ls -al
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4  # 设置node环境
         with:
           node-version: 20 # 指定node版本
           registry-url: https://npm.pkg.github.com/
@@ -24,6 +24,17 @@ jobs:
           pnpm install
       - run: |
           pnpm run build
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: Clean up
+        run: |
+          pwd
+          rm -rf node_modules
+          rm -rf dist
+          rm -rf .gitignore
+          rm -rf .gitignore
+        working-directory: ./src # 指定工作目录
+      # 构建产物
 
   # publish-gpr:
   #   needs: build
