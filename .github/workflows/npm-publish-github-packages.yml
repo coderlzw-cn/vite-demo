@@ -45,7 +45,7 @@ jobs:
       #
       - uses: actions/checkout@v4
       - run: |
-          mkdir -p path/to/artifact
+          mkdir -p path/to/file
           ls -al
       - run: echo hello > path/to/file/a.txt
       - uses: actions/upload-artifact@v4
