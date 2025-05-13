@@ -43,20 +43,11 @@ jobs:
       #     TARGET: /root/www/r-hooks
       #     EXCLUDE: "/dist/, /node_modules/"
       #
-      - uses: actions/checkout@v4
-      - run: |
-          mkdir -p path/to/file
-          ls -al
-      - run: echo hello > path/to/file/a.txt
       - uses: actions/upload-artifact@v4
         with:
           name: my-artifact
-          path: path/to/file/a.txt
-      - uses: actions/download-artifact@v4
-        with:
-          name: my-artifact
-          path: path/to/file/a.txt
-      - run: ls -al
+          path: ./
+
           # - name: Push to Docker Hub
           # uses: docker/build-push-action@v1
           # with:
@@ -80,3 +71,11 @@ jobs:
   #     - run: npm publish
   #       env:
   #         NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: my-artifact
+          path: path/to/file/a.txt
+      - run: ls -al
