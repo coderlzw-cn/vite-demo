@@ -14,6 +14,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - run: ls -al
       - uses: actions/setup-node@v4
         with:
           node-version: 20 # 指定node版本
