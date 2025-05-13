@@ -72,6 +72,7 @@ jobs:
   #       env:
   #         NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
   download:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
